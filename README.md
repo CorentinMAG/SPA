@@ -36,7 +36,6 @@ In this module, we will cover the following topics:
 
 #### Involved technologies
 ![es6]
-![lodash]
 
 ![npm]
 ![yarn]
@@ -820,7 +819,7 @@ In this step, we will create a new `main.js` file, to ensure `parseUrl` function
  - Create a new `meme-ory/src/main.js` file, that make use of `parseUrl`: 
     ```javascript
     // meme-ory/src/main.js
-    import { parseUrl } from './utils/utils';
+    import { parseUrl } from './app/utils/utils';
     
     const parameters = parseUrl();
     
@@ -952,7 +951,6 @@ In this step, **[Webpack](https://webpack.js.org/)** will be a bundler of choice
   Look at the source of `index.html` in your web browser: 
   file `main.js` is not found (you can remove it from `index.html`), but instead a file `bundle.js` is served and contains all your source code ![tadaa]. 
 
-
 > ![question] What does the `webpack --config webpack.config.js` do ?
 
 > ![question] What does the `webpack-dev-server` do ?
@@ -1079,12 +1077,12 @@ Let's get started!
 - let's give `CardComponent` its own html file.  
     In `game.component.html`, you will find the `<template></template>` that defines the view for `CardComponent`:
     ```html
-    <div class="card-cmp">
+    <main class="card-cmp">
         <div class="card-wrapper">
             <img class="card front-face" alt="card">
             <img class="card back-face" alt="card" src="./card/assets/back.png">
         </div>
-    </div>
+    </main>
     ``` 
     Move the content of this template within its own `card.component.html` file.
     > ![warning] Do not forget to update `<img src="...">` from `"./card/assets/back.png"` to "`./assets/back.png`"
@@ -1116,15 +1114,23 @@ Let's get started!
     This is where our router will put components into.
 
 - Rewrite all our `**.component.js` to be ES6 modules.
-    Every time you see `window.XXXComponent = XXXXXXComponent`, `export` that component so it can be `imported` elsewhere.
+    Every time you see `window.XXXComponent = XXXXXXComponent`, `export` that component so it can be `imported` elsewhere:
+    ```javascript
+    // xxx.component.js
+    
+    export class XXXComponent {
+        
+    }
+    ```
     > ![info] Closures are not necessary anymore when we have ES6 modules. It's time to drop them all. 
 
 - We should give our components a way to display their respective HTML and CSS:  
     - copy file [`resources/component/component.js`](resources/component/component.js) into your `utils/` folder.
         It defines a `class Component {}` with the following methods:
           - `getTemplate()`: returns the template associated with this component.
-          - `render()`: attaches the component's template to the document's DOM.
     - let your `XXXComponent` classes extend the `Component` class defined above.
+        > ![warning] Do not forget to `import {Component} from '../../utils/component'`
+        
     - call `super()` constructor with a name. This name will be used by `Component` to create a tag `<name>`
     - make all `xxx.component.js` import its own html.
         ```javascript
@@ -1558,7 +1564,6 @@ Any specific troubles? Keep us updated and we will add those here.
 [babel]: .README/icons/babel.png
 [webpack]: .README/icons/webpack.png
 [sass]: .README/icons/sass.png
-[lodash]: .README/icons/lodash.png
 [bootstrap]: .README/icons/bootstrap-64x64.png
 [npm]: .README/icons/npm-64x64.png
 [yarn]: .README/icons/yarn-64x64.png
