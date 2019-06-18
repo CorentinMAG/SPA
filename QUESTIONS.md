@@ -18,11 +18,19 @@
 
 ![question] What is the `.bind(this)` stuff? What does happen if you remove it? Use your web browser's debugger to guess what happens.
 
-![question] The shorten syntax aside, what is the difference between?
+ ![question] The shorten syntax aside, what is the difference between?
+> ```javascript
+> setTimeout(function() { console.log(this._name); }, 750);
+> ```
 
-![question] What are the advantages of Promises?
+and 
+> ```javascript
+> setTimeout(() => console.log(this._name), 750);
+> ```
 
-![question] Inside wich version of ECMAScript async/await has been released ? 
+![question] What are the advantages of `Promises`?
+
+![question] For wich version of ECMAScript async/await has been released?
 
 ![question] What does the `@` symbol mean in `@babel/***`?
 
