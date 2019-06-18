@@ -671,7 +671,7 @@ return dates
 
 ## Step 4 - Promises - Async/await
 
-Let's enjoy an other feature of ES6, Promises to fight against the callback hell !
+Let's enjoy an other feature of ES6, `Promises` to fight against the callback hell !
 Dive into the game component and into the `fetchConfig` method.
 The method contains the old way to do an Ajax method, we gonna keep only the method argument `cb` of the method
 and the endpoint used to get the config: `${environment.api.host}/board?size=${this._size}`
@@ -685,7 +685,7 @@ return fetch(`${environment.api.host}/board?size=${this._size}`, {method: 'GET'}
         .catch(error => console.log('Fetch config error', error));
 ```
 
-> ![question] What are the advantages of Promises?
+> ![question] What are the advantages of `Promises`?
 
 Lighter right?
 But the `cb` argument is missing, instead of calling it we are returning a Promise, so how to handle it in our
@@ -708,7 +708,7 @@ const config = await this.fetchConfig();
 > ![danger] We cannot call an `async` method from a non `async` method, if you want to call `fetchConfig` from `init` method you also have to convert the `init`
 to a async one. 
 
-> ![question] Inside wich version of ECMAScript async/await has been released ? 
+> ![question] For wich version of ECMAScript async/await has been released?
 
 ### Checklist
   - [ ] I converted the old Ajax request with Fetch Api.
