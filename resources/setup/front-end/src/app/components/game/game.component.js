@@ -1,6 +1,6 @@
 // TODO Step 6 import "./game.component.html"
 
-(function() {    // TODO Step 6 remove this closure
+(function() { // TODO Step 6 remove this closure
     var environment = {
         api: {
             host: 'http://localhost:8081'
@@ -47,14 +47,15 @@
             for (var i in this._config.ids) {
                 this._cards[i] = new CardComponent(this._config.ids[i]);
             }
-
             this._boardElement = document.querySelector('.cards');
-            
+
             for (var i in this._cards) { // TODO Step 3.3: use Array.forEach()
                 (function() {
                     var card = this._cards[i];
                     this._boardElement.appendChild(card.getElement());
-                    card.getElement().addEventListener('click', function() {this._flipCard(card) }.bind(this)); // TODO use arrow function.
+                    card.getElement().addEventListener('click', function() {
+                        this._flipCard(card)
+                    }.bind(this)); // TODO use arrow function.
                 }).bind(this)();
             }
 
@@ -75,21 +76,21 @@
     }
 
     function gotoScore() {
-        var timeElapsedInSeconds = Math.floor((Date.now() - this._startTime )/1000);
+        var timeElapsedInSeconds = Math.floor((Date.now() - this._startTime) / 1000);
         clearInterval(this._timer);
 
-        setTimeout(function() {  // TODO Step 3.2: use arrow function.
+        setTimeout(function() { // TODO Step 3.2: use arrow function.
             // TODO Step 1: replace with '../score.component.html' location
             // TODO Step 3.2: use template literals
             // TODO Step 6: change path to: `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`;
-            window.location = 'score.html?name=' + this._name + '&size=' + this._size + '&time=' + timeElapsedInSeconds;
-        }.bind(this), 750);    // TODO Step 3.2: Why bind(this)?
+            window.location = '../score.component.html';
+        }.bind(this), 750); // TODO Step 3.2: Why bind(this)?
     }
 
     function fetchConfig(cb) {
-        var xhr = typeof XMLHttpRequest != 'undefined'
-            ? new XMLHttpRequest()
-            : new ActiveXObject('Microsoft.XMLHTTP');
+        var xhr = typeof XMLHttpRequest != 'undefined' ?
+            new XMLHttpRequest() :
+            new ActiveXObject('Microsoft.XMLHTTP');
 
         // TODO Step 3.2 use template literals
         xhr.open('get', environment.api.host + '/board?size=' + this._size, true);
@@ -185,4 +186,3 @@
     // TODO Step 6: export GameComponent
     window.GameComponent = GameComponent;
 })();
-

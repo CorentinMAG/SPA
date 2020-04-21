@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <title>MÈME ory</title>
     <!-- TODO Step 1: change css location to '../../styles/style.css' -->
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../../styles/style.css">
     <!-- TODO Step 1: change css location to '../../styles/bootstrap.css' -->
     <!-- TODO Step 2.1: change css location to '../../../../node_modules/bootstrap/dist/css/bootstrap.css' -->
-    <link rel="stylesheet" href="../styles/bootstrap.css">
-    <!-- TODO Step 1: create css './score.css' -->
-
+    <link rel="stylesheet" href="../../styles/bootstrap.css">
+    <!-- TODO Step 1: create css './card/card.css' -->
 </head>
 
 <body class="d-flex flex-column">
 <nav class="navbar bg-primary mb-3 shadow">
     <a class="navbar-brand d-flex" href="#">
         <!-- TODO Step 1: change image location to '../../../assets/logo_take_my_money.png' -->
-        <img class="d-inline-block align-top" src="../../assets/logo_take_my_money.png" alt="logo">
+        <img class="d-inline-block align-top" src="../../../assets/logo_take_my_money.png" alt="logo">
         <span class="align-self-center m-2">MÈME ory</span>
     </a>
     <span class="navbar-title"></span>
@@ -24,18 +23,8 @@
 
 <div class="container-fluid flex-grow-1 overflow-auto">
     <!-- TODO Step 6: Keep only this element -->
-    <main class="score-cmp">
-        <div class="d-flex p-3">
-            <div class="flex-grow-1">
-                <h3 class="congrats">CONGRATS<br/><span id="name"></span></h3>
-            </div>
-            <div>
-                <!-- TODO Step 1: change image location to './happy_homer.jpg' -->
-                <img src="../../assets/happy_homer.jpg" class="happy">
-                <p class="size"><span id="size"></span> pairs</p>
-                <p class="time"><span id="time"></span>s</p>
-            </div>
-        </div>
+    <main class="game-cmp">
+        <div class="cards flex-row h-100"></div>
     </main>
 
     <footer class="navbar position-absolute fixed-bottom bg-dark">
@@ -44,12 +33,25 @@
 </div>
 </body>
 
+<template id="card-template">
+    <!-- TODO Step 6: move card-cmp in card.component.html -->
+    <main class="card-cmp">
+        <div class="card-wrapper">
+            <img class="card front-face" alt="card">
+            <!-- TODO Step 1: change image location to './card/assets/back.png' -->
+            <img class="card back-face" alt="card" src="./card/assets/back.png">
+        </div>
+    </main>
+</template>
+
 <!-- link to welcome controller -->
-<!-- TODO Step 1: change script location to './score.component.js' -->
 <!-- TODO Step 6: remove all <script> tags -->
-<script src="../scripts/score.js"></script>
+
+<!-- TODO Step 1: change script location to './game.component.js' -->
+<script src="./game.component.js"></script>
+<!-- TODO Step 1: change script location to './card/card.component.js' -->
+<script src="./card/card.component.js"></script>
 <script>
-    new ScoreComponent().init();
+    (function() {new GameComponent().init()})();
 </script>
 </html>
-

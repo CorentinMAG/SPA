@@ -1,6 +1,6 @@
 // TODO Step 6 import "./card.component.html"
 
-(function() {   // TODO Step 6 remove this closure
+(function() { // TODO Step 6 remove this closure
 
     // TODO Step 3.1 create a class
     /* class CardComponent constructor */
@@ -17,8 +17,8 @@
         this._imageElt = this._elt.querySelector('.card-wrapper');
         // TODO Step 1: Change images location to ./card/assets/***.png
         // TODO Step 3.2: use template literals
-        this._imageElt.querySelector('img.front-face').src = '../../assets/cards/card-' + this._id + '.png';
-        this._imageElt.querySelector('img.back-face').src = '../../assets/cards/back.png';
+        this._imageElt.querySelector('img.front-face').src = './card/assets/card-' + this._id + '.png';
+        this._imageElt.querySelector('img.back-face').src = './card/assets/back.png';
     }
 
     /* method CardComponent.getElement */
@@ -59,7 +59,7 @@
     };
     Object.defineProperties(environment.api, {
         host: {
-            get: function () {
+            get: function() {
                 debugger
                 throw new Error(atob('VG9vIGJhZCEgV2l0aG91dCBjbG9zdXJlLCBJIGNhbiBjb2xsaWRlIGJ5IG1pc3Rha2VzICB3aXRoIGdsb2JhbCB2YXJpYWJsZXMgdGhhdCBoYXZlIGJlZW4gc2V0IGluIGFub3RoZXIgZmlsZQ'));
             }
