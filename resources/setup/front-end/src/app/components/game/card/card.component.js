@@ -4,55 +4,72 @@
 
     // TODO Step 3.1 create a class
     /* class CardComponent constructor */
-    function CardComponent(id) {
+    class CardComponent {
         // is this card flipped ?
-        this._flipped = false;
+        constructor(id) {
+            this._flipped = false;
 
-        // has the matching card has been discovered already ?
-        this.matched = false;
+            // has the matching card has been discovered already ?
+            this.matched = false;
 
-        this._id = id;
+            this._id = id;
 
-        this._elt = document.getElementById('card-template').content.cloneNode(true).firstElementChild;
-        this._imageElt = this._elt.querySelector('.card-wrapper');
-        // TODO Step 1: Change images location to ./card/assets/***.png
-        // TODO Step 3.2: use template literals
-        this._imageElt.querySelector('img.front-face').src = './card/assets/card-' + this._id + '.png';
-        this._imageElt.querySelector('img.back-face').src = './card/assets/back.png';
+            this._elt = document.getElementById('card-template').content.cloneNode(true).firstElementChild;
+            this._imageElt = this._elt.querySelector('.card-wrapper');
+            // TODO Step 1: Change images location to ./card/assets/***.png
+            // TODO Step 3.2: use template literals
+            this._imageElt.querySelector('img.front-face').src = './card/assets/card-' + this._id + '.png';
+            this._imageElt.querySelector('img.back-face').src = './card/assets/back.png';
+
+        }
+        getElement() {
+            return this._elt;
+        }
+        flip() {
+            this._imageElt.classList.toggle('flip');
+            this._flipped = !this._flipped;
+        }
+        equals(card) {
+            return card._id === this._id
+        }
+        get flipped() {
+            return this._flipped;
+        }
+
     }
 
     /* method CardComponent.getElement */
-    CardComponent.prototype.getElement = getElement;
+    //CardComponent.prototype.getElement = getElement;
 
     // TODO Step 6 implement getTemplate() {}
 
     /* method CardComponent.flip */
-    CardComponent.prototype.flip = flip;
+    //CardComponent.prototype.flip = flip;
 
     /* method CardComponent.equals */
-    CardComponent.prototype.equals = equals;
+    //CardComponent.prototype.equals = equals;
 
-    function getElement() {
-        return this._elt;
-    }
+    //function getElement() {
+    //    return this._elt;
+    //}
 
-    function flip() {
-        this._imageElt.classList.toggle('flip');
-        this._flipped = !this._flipped;
-    }
-
-    function equals(card) {
-        return card._id === this._id;
-    }
+    //function flip() {
+    //    this._imageElt.classList.toggle('flip');
+    //    this._flipped = !this._flipped;
+    //}
+    //
+    //function equals(card) {
+    //    return card._id === this._id;
+    //}
 
     /* CardComponent.get flipped() */
-    Object.defineProperties(CardComponent.prototype, {
-        flipped: {
-            get: function() {
-                return this._flipped;
-            }
-        }
-    });
+    //Object.defineProperties(CardComponent.prototype, {
+    //    flipped: {
+    //        get: function() {
+    //            return this._flipped;
+    //        }
+    //    }
+    //});
 
     var environment = {
         api: {}

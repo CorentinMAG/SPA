@@ -44,14 +44,14 @@
 
             // create a card out of the config
             this._cards = []; // TODO Step 3.3: use Array.map()
-            for (var i in this._config.ids) {
+            for (let i in this._config.ids) {
                 this._cards[i] = new CardComponent(this._config.ids[i]);
             }
             this._boardElement = document.querySelector('.cards');
 
-            for (var i in this._cards) { // TODO Step 3.3: use Array.forEach()
+            for (let i in this._cards) { // TODO Step 3.3: use Array.forEach()
                 (function() {
-                    var card = this._cards[i];
+                    let card = this._cards[i];
                     this._boardElement.appendChild(card.getElement());
                     card.getElement().addEventListener('click', function() {
                         this._flipCard(card)
@@ -79,12 +79,10 @@
         var timeElapsedInSeconds = Math.floor((Date.now() - this._startTime) / 1000);
         clearInterval(this._timer);
 
-        setTimeout(function() { // TODO Step 3.2: use arrow function.
-            // TODO Step 1: replace with '../score.component.html' location
+        setTimeout(() => // TODO Step 3.2: use arrow function.
             // TODO Step 3.2: use template literals
             // TODO Step 6: change path to: `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`;
-            window.location = '../score/score.component.html?name=' + this._name + '&size=' + this._size + '&time=' + timeElapsedInSeconds;
-        }.bind(this), 750); // TODO Step 3.2: Why bind(this)?
+            window.location = `../score/score.component.html?name=${this._name}&size=${this._size}&time=${timeElapsedInSeconds}`, 750); // TODO Step 3.2: Why bind(this)?
     }
 
     function fetchConfig(cb) {
@@ -96,7 +94,7 @@
         xhr.open('get', environment.api.host + '/board?size=' + this._size, true);
 
         // TODO Step 3.2 use arrow function
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = () => {
             var status;
             var data;
             // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
@@ -165,17 +163,17 @@
     }
 
     function parseUrl() {
-        var url = window.location;
-        var query = url.href.split('?')[1] || '';
-        var delimiter = '&';
-        var result = {};
+        const url = window.location;
+        const query = url.href.split('?')[1] || '';
+        const delimiter = '&';
+        let result = {};
 
-        var parts = query
+        let parts = query
             .split(delimiter);
         // TODO Step 3.3: Use Array.map() & Array.reduce()
-        for (var i in parts) {
-            var item = parts[i];
-            var kv = item.split('=');
+        for (let i in parts) {
+            let item = parts[i];
+            let kv = item.split('=');
             result[kv[0]] = kv[1];
         }
 
