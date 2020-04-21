@@ -83,7 +83,7 @@
             // TODO Step 1: replace with '../score.component.html' location
             // TODO Step 3.2: use template literals
             // TODO Step 6: change path to: `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`;
-            window.location = '../score.component.html';
+            window.location = '../score/score.component.html?name=' + this._name + '&size=' + this._size + '&time=' + timeElapsedInSeconds;
         }.bind(this), 750); // TODO Step 3.2: Why bind(this)?
     }
 
