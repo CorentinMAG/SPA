@@ -1,30 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>MÈME ory</title>
-    <!-- TODO Step 1: create css './welcome.component.css'-->
-    <!-- TODO Step 1: change css location to '../../styles/style.css'-->
-    <link rel="stylesheet" href="./welcome.component.css"> <!-- <=== HERE -->
-    <link rel="stylesheet" href="../../styles/style.css"> <!-- <=== HERE -->
-    <link rel="stylesheet" href="../../../../node_modules/bootstrap/dist/css/bootstrap.css"> <!-- <=== HERE -->
-    <!-- TODO Step 1: change css location to '../../styles/bootstrap.css'-->
-    <!-- TODO Step 2.1: change css location to '../../../../node_modules/bootstrap/dist/css/bootstrap.css' -->
-
-</head>
-
-<body class="d-flex flex-column">
-<nav class="navbar bg-primary mb-3 shadow">
-    <a class="navbar-brand d-flex" href="#">
-        <!-- TODO Step 1: change image location to '../../../assets/logo_take_my_money.png' -->
-        <img class="d-inline-block align-top" src="../../../assets/logo_take_my_money.png" alt="logo">
-        <span class="align-self-center m-2">MÈME ory</span>
-    </a>
-    <span class="navbar-title"></span>
-</nav>
-
-<div class="container-fluid flex-grow-1 overflow-auto">
-    <!-- TODO Step 6: Keep only this element -->
     <main class="welcome-cmp">
         <div class="container">
             <form id="start-form" class="form-signin card" novalidate>
@@ -76,20 +49,3 @@
             </form>
         </div>
     </main>
-
-    <footer class="navbar position-absolute fixed-bottom bg-dark">
-        <span>&copy The MÈME ory corporation | 2019</span>
-    </footer>
-</div>
-</body>
-
-<!-- link to welcome controller -->
-<!-- TODO Step 1: change script location to './welcome.component.js' -->
-<!-- TODO Step 6: remove all <script> tags -->
-<script src="./welcome.component.js"></script>
-<script>
-    // execute the controller
-    var wc = new WelcomeComponent().init();
-</script>
-
-</html>

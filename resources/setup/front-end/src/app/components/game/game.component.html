@@ -1,51 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>MÈME ory</title>
-    <link rel="stylesheet" href="../../styles/style.css">
-    <link rel="stylesheet" href="./card/card.component.css">
-    <link rel="stylesheet" href="../../../../node_modules/bootstrap/dist/css/bootstrap.css">
-</head>
+<main class="game-cmp">
+    <div class="cards flex-row h-100"></div>
+</main>
+<template id="card-template"></template>
 
-<body class="d-flex flex-column">
-<nav class="navbar bg-primary mb-3 shadow">
-    <a class="navbar-brand d-flex" href="#">
-        <img class="d-inline-block align-top" src="../../../assets/logo_take_my_money.png" alt="logo">
-        <span class="align-self-center m-2">MÈME ory</span>
-    </a>
-    <span class="navbar-title"></span>
-</nav>
-
-<div class="container-fluid flex-grow-1 overflow-auto">
-    <!-- TODO Step 6: Keep only this element -->
-    <main class="game-cmp">
-        <div class="cards flex-row h-100"></div>
-    </main>
-
-    <footer class="navbar position-absolute fixed-bottom bg-dark">
-        <span>&copy The MÈME ory corporation | 2019</span>
-    </footer>
-</div>
-</body>
-
-<template id="card-template">
-    <!-- TODO Step 6: move card-cmp in card.component.html -->
-    <main class="card-cmp">
-        <div class="card-wrapper">
-            <img class="card front-face" alt="card">
-            <!-- TODO Step 1: change image location to './card/assets/back.png' -->
-            <img class="card back-face" alt="card" src="./card/assets/back.png">
-        </div>
-    </main>
-</template>
-
-<!-- link to welcome controller -->
-<!-- TODO Step 6: remove all <script> tags -->
-
-<script src="./game.component.js"></script>
-<script src="./card/card.component.js"></script>
-<script>
-    (function() {new GameComponent().init()})();
-</script>
-</html>

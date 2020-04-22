@@ -1,8 +1,21 @@
+import 'bootstrap/dist/css/bootstrap.css';
+
 import {
-	parseUrl
-} from './app/utils/utils';
+	Router
+} from './app/utils/router';
+import {
+	WelcomeComponent
+} from './app/components/welcome/welcome.component';
+import {
+	GameComponent
+} from './app/components/game/game.component';
+import {
+	ScoreComponent
+} from './app/components/score/score.component';
 
-const parameters = parseUrl();
+const outlet = document.querySelector('#content-outlet');
 
-document.querySelector('body')
-	.appendChild(document.createTextNode(JSON.stringify(parameters)));
+const router = new Router(outlet)
+	.register('', WelcomeComponent)
+	.register('game', GameComponent)
+	.register('score', ScoreComponent);

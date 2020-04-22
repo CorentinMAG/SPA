@@ -1,6 +1,5 @@
 export function parseUrl() {
 	const url = window.location;
-	console.log(url)
 	const query = url.href.split('?')[1] || '';
 	const delimiter = '&';
 	let result = {};
