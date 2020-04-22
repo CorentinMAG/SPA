@@ -1,3 +1,6 @@
+import {
+    parseUrl
+} from '../../utils/utils';
 // TODO Step 6 import "./game.component.html"
 
 (function() { // TODO Step 6 remove this closure
@@ -7,15 +10,16 @@
         }
     };
 
+    const params = parseUrl()
+
     /* class GameComponent constructor */
     class GameComponent {
         // gather parameters from URL
 
         constructor() {
             // save player name & game ize
-            this.params = this.parseUrl()
-            this._name = this.params.name;
-            this._size = parseInt(this.params.size) || 9;
+            this._name = params.name;
+            this._size = parseInt(params.size) || 9;
             this._flippedCard = null;
             this._matchedPairs = 0;
 
@@ -119,19 +123,6 @@
                     }, 500);
                 }
             }
-        }
-        parseUrl() {
-            const url = window.location;
-            const query = url.href.split('?')[1] || '';
-            const delimiter = '&';
-            let result = {};
-
-            let parts = query
-                .split(delimiter);
-
-            parts.map(p => p.split('=').reduce((a, b) => result[a] = b))
-
-            return result;
         }
     }
     // put component in global scope, tu be runnable right from the HTML.

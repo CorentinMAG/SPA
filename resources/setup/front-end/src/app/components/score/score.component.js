@@ -1,13 +1,17 @@
+import {
+    parseUrl
+} from '../../utils/utils';
 // TODO Step 6 import "./score.component.html"
 
 (function() { // TODO Step 6 remove this closure
     /* class ScoreComponent constructor */
+    const params = parseUrl()
+
     class ScoreComponent {
         constructor() {
-            this.params = this.parseUrl()
-            this.name = this.params.name;
-            this.size = parseInt(this.params.size);
-            this.time = parseInt(this.params.time);
+            this.name = params.name;
+            this.size = parseInt(params.size);
+            this.time = parseInt(params.time);
         }
 
         init() {
@@ -15,23 +19,24 @@
             document.getElementById('size').innerText = this.size;
             document.getElementById('time').innerText = this.time;
         }
-        parseUrl() {
-            var url = window.location;
-            var query = url.href.split('?')[1] || '';
-            var delimiter = '&';
-            var result = {};
+    }
 
-            var parts = query
-                .split(delimiter);
-            // TODO Step 3.3: Use Array.map() & Array.reduce()
-            for (var i in parts) {
-                var item = parts[i];
-                var kv = item.split('=');
-                result[kv[0]] = kv[1];
-            }
+    function parseUrl() {
+        var url = window.location;
+        var query = url.href.split('?')[1] || '';
+        var delimiter = '&';
+        var result = {};
 
-            return result;
+        var parts = query
+            .split(delimiter);
+        // TODO Step 3.3: Use Array.map() & Array.reduce()
+        for (var i in parts) {
+            var item = parts[i];
+            var kv = item.split('=');
+            result[kv[0]] = kv[1];
         }
+
+        return result;
     }
 
 
