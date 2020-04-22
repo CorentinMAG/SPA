@@ -7,45 +7,43 @@
         }
     };
 
-    var params = parseUrl();
-
     /* class GameComponent constructor */
     class GameComponent {
         // gather parameters from URL
 
         constructor() {
             // save player name & game ize
-            this._name = params.name;
-            this._size = parseInt(params.size) || 9;
+            this.params = this.parseUrl()
+            this._name = this.params.name;
+            this._size = parseInt(this.params.size) || 9;
             this._flippedCard = null;
             this._matchedPairs = 0;
 
         }
-        init() {
-            this.fetchConfig((config) => {
-                this._config = config;
+        async init() {
+            this._config = await this.fetchConfig()
 
-                // create a card out of the config
-                this._cards = this._config.ids.map((id) => new CardComponent(id))
+            // create a card out of the config
+            this._cards = this._config.ids.map((id) => new CardComponent(id))
 
-                this._boardElement = document.querySelector('.cards');
+            this._boardElement = document.querySelector('.cards');
 
-                this._cards.forEach((card) => {
-                    this._boardElement.appendChild(card.getElement());
-                    card.getElement().addEventListener('click', function() {
-                        this._flipCard(card)
-                    }.bind(this));
-                })
+            this._cards.forEach((card) => {
+                this._boardElement.appendChild(card.getElement());
+                card.getElement().addEventListener('click', function() {
+                    this._flipCard(card)
+                }.bind(this));
+            })
 
-                this._cards.forEach((card) => {
-                    this._boardElement.appendChild(card.getElement());
-                    card.getElement().addEventListener('click', function() {
-                        this._flipCard(card)
-                    }.bind(this))
-                })
+            this._cards.forEach((card) => {
+                this._boardElement.appendChild(card.getElement());
+                card.getElement().addEventListener('click', function() {
+                    this._flipCard(card)
+                }.bind(this))
+            })
 
-                this.start();
-            });
+            this.start();
+
         }
         start() {
             this._startTime = Date.now();
@@ -64,29 +62,14 @@
                 // TODO Step 6: change path to: `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`;
                 window.location = `../score/score.component.html?name=${this._name}&size=${this._size}&time=${timeElapsedInSeconds}`, 750); // TODO Step 3.2: Why bind(this)?
         }
-        fetchConfig(cb) {
-            var xhr = typeof XMLHttpRequest != 'undefined' ?
-                new XMLHttpRequest() :
-                new ActiveXObject('Microsoft.XMLHTTP');
-
-            xhr.open('get', `${environment.api.host}/board?size=${this._size}`, true);
-
-            xhr.onreadystatechange = () => {
-                var status;
-                var data;
-                // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
-                if (xhr.readyState == 4) { // `DONE`
-                    status = xhr.status;
-                    if (status == 200) {
-                        data = JSON.parse(xhr.responseText);
-                        cb(data);
-                    } else {
-                        throw new Error(status)
-                    }
-                }
-            };
-            xhr.send();
+        async fetchConfig() {
+            return fetch(`${environment.api.host}/board?size=${this._size}`, {
+                    method: "GET"
+                })
+                .then(response => response.json())
+                .catch(error => console.log("Fetch config error", error));
         }
+
         _flipCard(card) {
             if (this._busy) {
                 return;
@@ -137,22 +120,20 @@
                 }
             }
         }
+        parseUrl() {
+            const url = window.location;
+            const query = url.href.split('?')[1] || '';
+            const delimiter = '&';
+            let result = {};
+
+            let parts = query
+                .split(delimiter);
+
+            parts.map(p => p.split('=').reduce((a, b) => result[a] = b))
+
+            return result;
+        }
     }
-
-    function parseUrl() {
-        const url = window.location;
-        const query = url.href.split('?')[1] || '';
-        const delimiter = '&';
-        let result = {};
-
-        let parts = query
-            .split(delimiter);
-
-        parts.map(p => p.split('=').reduce((a, b) => result[a] = b))
-
-        return result;
-    }
-
     // put component in global scope, tu be runnable right from the HTML.
     // TODO Step 6: export GameComponent
     window.GameComponent = GameComponent;
