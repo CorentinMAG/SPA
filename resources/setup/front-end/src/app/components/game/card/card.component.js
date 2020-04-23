@@ -1,4 +1,4 @@
-import './card.component.css';
+import './card.component.scss';
 import template from "./card.component.html"
 import {
     Component

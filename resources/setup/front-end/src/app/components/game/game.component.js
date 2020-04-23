@@ -64,6 +64,7 @@ export class GameComponent extends Component {
     }
     gotoScore() {
         const timeElapsedInSeconds = Math.floor((Date.now() - this._startTime) / 1000);
+        clearInterval(this._timer) //on arrete le timer quand on a réussi le jeu
 
         setTimeout(() => window.location.hash = `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`, 750);
     }

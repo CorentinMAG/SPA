@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    devtool: 'cheap-module-eval-source-map',
     watch: false,
     mode: 'development',
     entry: './src/main.js',
@@ -16,6 +15,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
+    devtool: 'cheap-module-eval-source-map',
     module: {
         rules: [{
                 test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,

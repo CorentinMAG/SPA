@@ -1,4 +1,4 @@
-import './score.component.css';
+import './score.component.scss';
 import template from "./score.component.html"
 import {
     parseUrl

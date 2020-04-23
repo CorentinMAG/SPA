@@ -1,4 +1,4 @@
-import './welcome.component.css';
+import './welcome.component.scss';
 import template from "./welcome.component.html"
 import {
     Component
