@@ -7,7 +7,13 @@ export function parseUrl() {
 	let parts = query
 		.split(delimiter);
 
-	parts.map(p => p.split('=').reduce((a, b) => result[a] = b))
+	parts.map(p => p.split('=').reduce((a, b) => result[a] = b));
 
 	return result;
 }
+
+export const environment = {
+	api: {
+		host: 'http://localhost:8081'
+	}
+};

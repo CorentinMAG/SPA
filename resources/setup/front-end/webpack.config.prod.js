@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     watch: false,
-    mode: 'development',
+    mode: 'production',
     entry: './src/main.js',
     plugins: [
         new HtmlWebpackPlugin({
@@ -15,7 +15,6 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
-    devtool: 'cheap-module-eval-source-map',
     module: {
         rules: [{
             test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,
@@ -37,6 +36,7 @@ module.exports = {
             test: /\.(html)$/,
             use: {
                 loader: 'html-loader',
+                options: {}
             }
         }]
     },

@@ -3,70 +3,102 @@ import {
     Component
 } from '../../utils/component'
 import {
-    parseUrl
+    parseUrl,
+    environment
 } from '../../utils/utils';
 import {
     CardComponent
 } from './card/card.component'
-var environment = {
-    api: {
-        host: 'http://localhost:8081'
-    }
-};
+
+import localforage from 'localforage'
 
 /* class GameComponent constructor */
 export class GameComponent extends Component {
     // gather parameters from URL
 
     constructor() {
-        super('game-component')
-        const params = parseUrl()
-            // save player name & game ize
+        super('game-component');
+        const params = parseUrl();
+        // save player name & game ize
         this._name = params.name;
         this._size = parseInt(params.size) || 9;
         this._flippedCard = null;
         this._matchedPairs = 0;
-
+        this._currentConfig = null;
     }
     async init() {
-        this._config = await this.fetchConfig()
+        //est ce qu'il existe une configuration ?
+        this._currentConfig = await localforage.getItem('configuration');
 
-        // create a card out of the config
-        this._cards = this._config.ids.map((id) => new CardComponent(id))
+        //si oui on la récupère sinon on en crée une
+        this._currentConfig == null ? this._config = await this.fetchConfig() : this._config = this._currentConfig.config_carte;
+
+        this._cards = this._config.ids.map((id) => new CardComponent(id));
 
         this._boardElement = document.querySelector('.cards');
 
         this._cards.forEach((card) => {
             this._boardElement.appendChild(card.getElement());
-            card.getElement().addEventListener('click', function() {
+            card.getElement().addEventListener('click', () => {
                 this._flipCard(card)
-            }.bind(this));
-        })
+            });
+        });
+
+        document.querySelector('.navbar-title').style.display = 'inline'
 
         this._cards.forEach((card) => {
             this._boardElement.appendChild(card.getElement());
-            card.getElement().addEventListener('click', function() {
+            card.getElement().addEventListener('click', () => {
                 this._flipCard(card)
-            }.bind(this))
-        })
+            })
+        });
 
         this.start();
 
     }
     start() {
-        this._startTime = Date.now();
-        var seconds = 0;
+        let seconds;
+
+        //si il existe déjà un temps enregistré on le récupère
+        this._currentConfig == null ? this._startTime = Date.now() : this._startTime = this._currentConfig.start_time;
+        this._currentConfig == null ? seconds = 0 : seconds = this._currentConfig.current_time;
+
         document.querySelector('nav .navbar-title').textContent = `Player: ${this._name}  Elapsed time:  ${seconds++}`;
 
         this._timer = setInterval(() =>
 
             document.querySelector('nav .navbar-title').textContent = `Player: ${this._name}   Elapsed time:  ${seconds++}`, 1000);
+
+        window.onbeforeunload = async() => {
+
+            //si on recharge la page actuelle 
+            //on update la configuration 
+            if (location.href.includes('game')) {
+                const my_config = {
+                    config_carte: this._config,
+                    start_time: this._startTime,
+                    current_time: seconds
+                };
+                await localforage.setItem('configuration', my_config);
+            }
+        }
+        window.onhashchange = (e) => {
+            clearInterval(this._timer) //on arrete le timer
+                //on fait disparaitre le temps si on retourne à l'accueil
+            e.newURL == 'http://localhost:8080/#' ? document.querySelector('.navbar-title').style.display = 'none' : ''
+        }
+
     }
     gotoScore() {
         const timeElapsedInSeconds = Math.floor((Date.now() - this._startTime) / 1000);
-        clearInterval(this._timer) //on arrete le timer quand on a réussi le jeu
+        clearInterval(this._timer); //on arrete le timer quand on a réussi le jeu
 
-        setTimeout(() => window.location.hash = `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`, 750);
+
+        setTimeout(async() => {
+                window.location.hash = `score?name=${this._name}&size=${this._size}'&time=${timeElapsedInSeconds}`;
+                await localforage.removeItem('configuration');
+            },
+            750);
     }
 
     async fetchConfig() {

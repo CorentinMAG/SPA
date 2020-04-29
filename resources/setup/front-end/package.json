@@ -6,14 +6,15 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "webpack-dev-server",
-		"build": "webpack --config webpack.config.js"
+		"build": "webpack --config webpack.config.prod.js"
 	},
 	"author": "",
 	"license": "ISC",
 	"private": true,
 	"dependencies": {
 		"bootstrap": "^4.4.1",
-		"core-js": "^3.6.5"
+		"core-js": "^3.6.5",
+		"localforage": "^1.7.3"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.8.4",
