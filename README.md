@@ -1,3 +1,4 @@
+{::options parse_block_html="true" /}
 # Javascript SPA 
 
 utilisation de babel / webpack / node.js / ESnext
