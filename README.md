@@ -125,7 +125,7 @@ Cette commande lance le serveur de développement de webpack. Il s’agit d’un
 
 **Score Component**
 
-![score_component](img/result_component.png)
+![score_component](img/score_component.png)
 
 On voit que le javascript est chargé lors de l’appel à la 1ere vue, ensuite se sont surtout des images (qui sont spécifiques aux composants) et des requêtes réseaux qui sont effectués.
 Au total on a environ 4 Mo de données qui sont échangées.
