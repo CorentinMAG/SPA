@@ -12,14 +12,12 @@ import {
 
 import localforage from 'localforage'
 
-/* class GameComponent constructor */
+
 export class GameComponent extends Component {
-    // gather parameters from URL
 
     constructor() {
         super('game-component');
         const params = parseUrl();
-        // save player name & game ize
         this._name = params.name;
         this._size = parseInt(params.size) || 9;
         this._flippedCard = null;
@@ -119,23 +117,15 @@ export class GameComponent extends Component {
         }
 
 
-        // flip the card
         card.flip();
-
-        // if flipped first card of the pair
         if (!this._flippedCard) {
-            // keep this card flipped, and wait for the second card of the pair
             this._flippedCard = card;
         } else {
-            // second card of the pair flipped...
-
-            // if cards are the same
             if (card.equals(this._flippedCard)) {
                 this._flippedCard.matched = true;
                 card.matched = true;
                 this._matchedPairs += 1;
 
-                // reset flipped card for the next turn.
                 this._flippedCard = null;
 
                 if (this._matchedPairs === this._size) {
@@ -144,16 +134,11 @@ export class GameComponent extends Component {
             } else {
                 this._busy = true;
 
-                // cards did not match
-                // wait a short amount of time before hiding both cards
-
                 setTimeout(() => {
-                    // hide the cards
                     this._flippedCard.flip();
                     card.flip();
                     this._busy = false;
 
-                    // reset flipped card for the next turn.
                     this._flippedCard = null;
                 }, 500);
             }

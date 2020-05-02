@@ -2,10 +2,6 @@
 @import "~bootstrap/scss/bootstrap";
 
 
-/*****
- * GLOBAL STYLE
- */
-
 body {
     background-color: $primary-light;
     position: absolute;
@@ -22,7 +18,6 @@ body > main {
     overflow: auto;
 }
 
-/* global style */
 .bg-primary * {
     color: $title-color;
 }
