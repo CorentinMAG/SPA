@@ -5,6 +5,16 @@
     animation-iteration-count: infinite;
 }
 
+table{
+    width:60% !important;
+    margin:auto;
+    text-align:center;
+}
+
+caption{
+    caption-side:top;
+}
+
 
 @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(0deg); }

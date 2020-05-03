@@ -64,14 +64,15 @@ export class ScoreComponent extends Component {
 
     }
     construction(score, parent) {
-        let div_score = document.createElement('div');
-        div_score.classList = "score"
+        console.log(score)
+        let tr_score = document.createElement('tr');
+        tr_score.classList = "score"
         for (const [key, value] of Object.entries(score)) {
-            let span_score = document.createElement('span');
-            span_score.textContent = `  ${key} : ${value}  `;
-            div_score.appendChild(span_score)
+            let th_score = document.createElement('th');
+            th_score.textContent = `${value} `;
+            tr_score.appendChild(th_score)
         }
-        parent.appendChild(div_score)
+        parent.appendChild(tr_score)
 
 
     }
