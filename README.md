@@ -132,6 +132,9 @@ Cette commande lance le serveur de développement de webpack. Il s’agit d’un
 
 On voit que le javascript est chargé lors de l’appel à la 1ere vue, ensuite se sont surtout des images (qui sont spécifiques aux composants) et des requêtes réseaux qui sont effectués.
 Au total on a environ 4 Mo de données qui sont échangées.
+Il y a donc un transfert de données plus important une fois l'application transformée en SPA. Cependant
+ce poids supplémentaire est en grande partie dû au fichier bundle.js, qui permet d'avoir du javascript
+compatible pour tous les navigateurs. De plus, avec une SPA, l'expérience utilisateur est valorisé.
 
 **22. Can you guess how style-loader works exactly?**
 
