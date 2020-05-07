@@ -51,11 +51,11 @@ Ce fichier contient toutes les dépendances qui ont été installés au cours du
 **7. What is a devDependency exactly? What are the differences with a dependency?**
 
 Les devDependencies sont des modules qui ne sont chargés que pendant la phase de développement (donc n’apparaitront pas dans le dossier node_modules en prod), les dépendencies au contraire sont aussi chargés lorsqu’on est en production.
-Si un développeur a récupéré notre projet pour l’installer sur sa machine il va taper la commande npm install qui ne va installer que les dependancies.
+Si un développeur a récupéré notre projet pour l’installer sur sa machine il va taper la commande npm install qui ne va installer que les dependencies.
 
 **8. Can you think of at least 2 things that are possible with Java classes, but cannot be done with ES6 classes?**
 
-L’encapsulation et donc l’utilisation des mots clés private/protected/public existe en java mais n’est pas compatible avec javascript ou ce concept n’existe pas.
+L’encapsulation et donc l’utilisation des mots clés private/protected/public existe en java mais n’est pas compatible avec javascript où ce concept n’existe pas.
 De plus en java il est possible de spécifier plusieurs constructeurs ce qui n’est pas possible en javascript.
 
 **9. What are the differences between var and let?**
@@ -106,11 +106,11 @@ La première syntaxe importe toutes les fonctions, variables déclarés comme é
 
 **18. why the utils.js will be also transpiled?**
 
-Le fichier d’entrée pour webpack est main.js, ce fichier import des classes qui elles-mêmes exécutent les fonctions dans utils.js. Or on a bien spécifié à webpack de transpilé tous les fichiers js qu’il rencontre.
+Le fichier d’entrée pour webpack est main.js, ce fichier importe des classes qui elles-mêmes exécutent les fonctions dans utils.js. Or on a bien spécifié à webpack de transpiler tous les fichiers js qu’il rencontre.
 
 **19. What does the webpack --config webpack.config.js do ?**
 
-Cette commande déclare qu’il exécuter la configuration spécifiée dans le fichier webpack.config.js. Ainsi en tapant cette commande les fichiers js sont transpilés et les autres éventuels modules sont chargés et s’exécutent.
+Cette commande déclare que la configuration spécifiée dans le fichier webpack.config.js doit être exécutée. Ainsi en tapant cette commande les fichiers js sont transpilés et les autres éventuels modules sont chargés et s’exécutent.
 
 **20. What does the webpack-dev-server do ?**
 
@@ -138,7 +138,7 @@ compatible pour tous les navigateurs. De plus, avec une SPA, l'expérience utili
 
 **22. Can you guess how style-loader works exactly?**
 
-Permet d’injecter du css directement dans une page html à partir de import ‘./mafeuilledestyle.css’ efectué dans un component.
+Ce plugin permet d’injecter du css directement dans une page html à partir de import ‘./mafeuilledestyle.css’ efectué dans un component.
 
 **23. What does the _ prefix means on a sass file?**
 

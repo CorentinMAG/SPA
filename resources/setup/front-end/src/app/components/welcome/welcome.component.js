@@ -20,8 +20,8 @@ export class WelcomeComponent extends Component {
                 event.stopPropagation();
                 form.classList.add('was-validated');
             } else {
-                var name = event.srcElement.querySelector('#nickname').value;
-                var size = parseInt(event.srcElement.querySelector('#size').value);
+                let name = event.srcElement.querySelector('#nickname').value;
+                let size = parseInt(event.srcElement.querySelector('#size').value);
 
                 _startGame(name, size);
             }
