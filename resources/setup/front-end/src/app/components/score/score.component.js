@@ -36,7 +36,7 @@ export class ScoreComponent extends Component {
 
     }
     async postResult(name, size, time) {
-        await fetch('http://localhost:8081/scores', {
+        await fetch(`${environment.api.host}/scores`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -64,7 +64,6 @@ export class ScoreComponent extends Component {
 
     }
     construction(score, parent) {
-        console.log(score)
         let tr_score = document.createElement('tr');
         tr_score.classList = "score"
         for (const [key, value] of Object.entries(score)) {
