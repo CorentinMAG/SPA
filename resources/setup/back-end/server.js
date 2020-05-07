@@ -16,8 +16,16 @@ const specs = swaggerJsdoc(config.swagger);
 const scores = [];
 
 // populate scores with random scores
-scores.push({name: 'Alexis', time: _.random(999, true), size: _.random(0, 12)});
-scores.push({name: 'Nicolas', time: _.random(999, true), size: _.random(0, 12)});
+scores.push({
+    size: _.random(0, 12),
+    name: 'Alexis',
+    time: _.random(999, true),
+});
+scores.push({
+    size: _.random(0, 12),
+    name: 'Nicolas',
+    time: _.random(999, true)
+});
 
 // used to parse body request
 app.use(express.json())
@@ -59,7 +67,9 @@ app.get('/board', (req, res) => {
         return res.status(400).send('Missing parameter "size"')
     }
 
-    res.json({'ids': _.shuffle([...Array(size).keys(), ...Array(size).keys()])});
+    res.json({
+        'ids': _.shuffle([...Array(size).keys(), ...Array(size).keys()])
+    });
 });
 
 /**
@@ -114,7 +124,11 @@ app.post('/scores', (req, res) => {
         return res.status(400).send('Missing parameter, size, name and time are required');
     }
 
-    scores.push({size, name, time});
+    scores.push({
+        size,
+        name,
+        time
+    });
 
     res.status(201).end();
 });
@@ -173,7 +187,7 @@ app.get('/scores', (req, res) => {
 
 app.listen(config.port, () => {
     console.log(chalk.bold.green(
-`*****************
+        `*****************
 Meme-ory app started up!
 *****************
 `));
