@@ -46,7 +46,8 @@ Signifie que la version majeure de bootstrap à télécharger doit absolument ê
 
 **6. As you can see, npm install command also generated a package-lock.json file along with package.json. What is the purpose of this file?**
 
-Ce fichier contient toutes les dépendances qui ont été installés au cours du projet avec un numéro de version figé. Quand un autre développeur s’approprie notre projet, en tapant npm install, ce sont les versions des paquets spécifiés dans ce fichier (ainsi que leurs propres dépendances qui ne sont pas spécifiées dans le package.json) qui seront pris en compte. Ceci permet à tous les développeurs d’avoir les mêmes versions de paquets. Le package.json autorise ou non les développeurs à mettre à jour les paquets lorsque l’on tape la commande npm upgrade.
+Ce fichier contient toutes les dépendances qui ont été installés au cours du projet avec un numéro de version figé. Quand un autre développeur s’approprie notre projet, en tapant npm install, ce sont les versions des paquets spécifiés dans ce fichier (ainsi que leurs propres dépendances) qui seront téléchargés. Ceci permet à tous les développeurs d’avoir les mêmes versions de paquets.
+Le package.json,quant-à-lui, autorise ou non les développeurs à mettre à jour les paquets lorsque l’on tape la commande npm upgrade.
 
 **7. What is a devDependency exactly? What are the differences with a dependency?**
 
