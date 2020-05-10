@@ -7,7 +7,6 @@ import {
 import {
     Component
 } from '../../utils/component'
-import localforage from "localforage";
 
 
 
